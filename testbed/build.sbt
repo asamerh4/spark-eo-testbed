@@ -17,7 +17,8 @@ lazy val root = (project in file(".")).
     )),
     name := "Hello",
     libraryDependencies ++= Seq(
-      //"org.locationtech.geotrellis" % "geotrellis-spark_2.11" % "1.1.1",
+      "org.alluxio" % "alluxio-core-common" % "1.6.1" % "provided",
+	  "org.alluxio" % "alluxio-core-client-fs" % "1.6.1" % "provided",
       "org.locationtech.geotrellis" % "geotrellis-vector_2.11" % "1.1.1",
       "org.locationtech.geotrellis" % "geotrellis-raster_2.11" % "1.1.1",
       "org.locationtech.geotrellis" % "geotrellis-spark_2.11" % "1.1.1",
