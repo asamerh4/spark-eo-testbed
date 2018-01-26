@@ -2,6 +2,7 @@ package testbed
 
 import geotrellis.macros._
 import geotrellis.raster
+import geotrellis.raster._
 import geotrellis.raster.io.geotiff._
 import geotrellis.raster.io.geotiff.reader.GeoTiffReader
 import geotrellis.raster.isNoData
@@ -52,5 +53,15 @@ class  TestUtils extends Serializable {
       else if (isNoData(z2)) z1
       else op(z1, z2)
   }
+  trait MaxMethods extends MethodExtensions[Tile] {
+  /** Max a constant Int value to each cell. */
+  def biasedLocalMax(i: Int): Tile = DataBiasedOp.BiasedMax(self, i)
+  /** Max a constant Double value to each cell. */
+  def biasedLocalMax(d: Double): Tile = DataBiasedOp.BiasedMax(self, d)
+  /** Max the values of each cell in each raster.  */
+  def biasedLocalMax(r: Tile): Tile = DataBiasedOp.BiasedMax(self, r)
+  /** Max the values of each cell in each raster.  */
+  def biasedLocalMax(rs: Traversable[Tile]): Tile = DataBiasedOp.BiasedMax(self +: rs.toSeq)
+}
 }
 
